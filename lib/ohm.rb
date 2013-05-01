@@ -204,6 +204,14 @@ module Ohm
       model[db.lindex(key, 0)]
     end
 
+    def [](index)
+      fetch(Array(db.lindex(key,index))).first()
+    end
+
+    def gets(start_index, end_index)
+      fetch(db.lrange(key, start_index, end_index))
+    end
+
     # Returns the last element of the list using LINDEX.
     def last
       model[db.lindex(key, -1)]
